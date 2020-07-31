@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "aniko-me": {
+      "hosting": {
+        "web-anime": [
+          "aniko-me"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "aniko-me"
+  }
+}

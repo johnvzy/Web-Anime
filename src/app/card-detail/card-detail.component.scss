@@ -1,0 +1,61 @@
+$default-color: rgb(108 117 125 / 0.5);
+$selected-color: rgb(0 123 255 / 0.8);
+
+%mediaArea {
+    display: inline-block;
+    margin-top: 2px;
+    margin-right: 1px;
+    width: 25%;
+    padding-bottom: 25%;
+    border: 2px $default-color solid;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+
+    cursor: pointer;
+    &:hover {
+        border-color: $selected-color;
+    }
+}
+
+.container {
+    img {
+        // max-width: 200px;
+        // width: auto;
+        // height: auto;
+        width: 100%;
+    }
+
+    .video_wrapper {
+        position: relative;
+        padding-bottom: 75%; /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */
+
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .thumbBox {
+        @extend %mediaArea;
+    }
+
+    .videoBox {
+        @extend %mediaArea;
+        width: 25%;
+        padding-bottom: 25%;
+    }
+}
+
+:host {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    overflow: auto;
+}

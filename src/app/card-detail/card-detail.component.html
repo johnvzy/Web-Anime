@@ -1,0 +1,31 @@
+<div class="container card shadow mt-5 mb-5 px-0">
+    <div class="close-btn px-2">
+        <button type="button" class="close" aria-label="Close" (click)="closeEvent()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="card-body">
+        <div class="row pt-2">
+            <div class="col-12 col-sm-12 col-md-6">
+                <img [hidden]="!thumbClicked" [src]="handleUndefined.imgUrl" alt="poster">
+                <div [hidden]="!videoClicked" class="video_wrapper">
+                    <iframe frameborder="0" [src]="videoPlayerUrl(handleUndefined.videoId)| safe"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="thumbBox" [ngStyle]="thumbStyle()" (click)="onSelect(selectThumb.className)" #selectThumb>
+                </div>
+                <div class="videoBox" [ngStyle]="videoStyle()" (click)="onSelect(selectVideo.className)" #selectVideo>
+                </div>
+            </div>
+            <div class="col-md-6 pt-3 pt-md-0">
+                <div class="px-2">
+                    <h5 class="card-title">{{handleUndefined.title}}</h5>
+                    <p class="card-text">{{handleUndefined.synopsis}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

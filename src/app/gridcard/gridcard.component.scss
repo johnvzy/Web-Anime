@@ -1,0 +1,29 @@
+.card {
+    img {
+        max-width: 230px;
+    }
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.slide-fwd-center {
+    transition: all 0.5s ease;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+.full {
+    z-index: 1000;
+    transition: 1s ease;
+    transform: scale(2);
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+

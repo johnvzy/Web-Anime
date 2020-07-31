@@ -1,0 +1,25 @@
+<div class="row pt-5">
+    <!-- <div class="col-md-6 col-lg-4 col-xl-3 p-2" *ngFor="let item of cardItems"
+        [ngClass]="item.attributes.posterImage.large === clickItem ? 'full' : 'slide-fwd-center'"> -->
+    <div class="col-md-6 col-lg-4 col-xl-3 p-2 slide-fwd-center" *ngFor="let item of cardItems">
+
+        <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+            (scrolled)="onScroll()">
+
+        </div>
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <div class="card-title">{{item.attributes.canonicalTitle}}</div>
+                <img [src]="item.attributes.posterImage.large">
+                <p class="card-text"></p>
+                <button type="button" class="btn btn-outline-primary" (click)="enlargeContent(item.attributes)">Go
+                    Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-card-detail  [@openClose]="close_status ? 'closed' : 'open'" [detail_cont]="detail_temp" (close_status)="closeStatus($event)">
+</app-card-detail>
+<!-- <mat-progress-bar *ngIf="value > 0 && value <100" class="progress-bar" [color]="color" [mode]="mode" [value]="value">
+</mat-progress-bar> -->
