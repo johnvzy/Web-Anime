@@ -89,5 +89,6 @@ export class GridcardComponent implements OnInit {
     document.body.style.overflow = "auto";
     this.close_status = event;
     this.detail_temp.imgUrl = undefined; //remove last temp image on image attribute
+    this.detail_temp.videoId = undefined;
   }
 }

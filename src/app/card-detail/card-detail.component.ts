@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { functions } from 'firebase';
 
 @Component({
   selector: 'app-card-detail',
@@ -22,8 +23,6 @@ export class CardDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentWidth = window.innerWidth;
-
-    console.log();
   }
 
 
@@ -31,14 +30,14 @@ export class CardDetailComponent implements OnInit {
     this.close_status.emit(true);
 
     //thumb or video css style initial
-    this.thumbClicked = true;
+    this.thumbClicked = false;
     this.videoClicked = false;
-    this.handleUndefined.videoId = undefined;
     this.videoColor = "rgb(108 117 125 / 0.5)";
     this.thumbColor = "rgb(108 117 125 / 0.5)";
   }
 
   get handleUndefined(): any {
+    this.thumbClicked = true;
     return typeof this.detail_cont === "undefined" ? '' : this.detail_cont;
   }
 
