@@ -33,7 +33,7 @@ export class GridcardComponent implements OnInit {
 
   notEmptyPost = true;
   notscrolly = true;
-
+  scrollInit: any;
   detail_temp: any;
   close_status: boolean = true;
   private cardArray: any[] = [];
@@ -42,6 +42,7 @@ export class GridcardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadInitPost();
+    this.scrollInit = this.loadNextPost();
   }
 
   get cardItems(): any[] {
@@ -56,20 +57,24 @@ export class GridcardComponent implements OnInit {
   }
 
   //content part2
-  loadNextPost(): void {
-    const url = "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=10";
-    this.http.get(url).subscribe((data: any) => {
-      for (let i = 0; i < data.data.length; i++) {
-        this.cardArray.push(data.data[i]);
-      }
-    });
+  loadNextPost() {
+    var i = 10;
+    return () => {
+      const url = `https://kitsu.io/api/edge/anime?page[limit]=2&page[offset]=${i}`;
+      this.http.get(url).subscribe((data: any) => {
+        for (let i = 0; i < data.data.length; i++) {
+          this.cardArray.push(data.data[i]);
+        }
+      });
+      i += 2;
+    }
   }
 
   //detect the current distance and bottom of window
   onScroll(): void {
     if (this.notscrolly && this.notEmptyPost) {
-      this.notscrolly = false;
-      this.loadNextPost();
+      // this.notscrolly = false;
+      this.scrollInit();
     }
   }
 
