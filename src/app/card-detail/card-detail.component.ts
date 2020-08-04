@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { functions } from 'firebase';
+import { of, Observable, interval, from, pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { eventNames } from 'cluster';
+import { time } from 'console';
 
 @Component({
   selector: 'app-card-detail',
@@ -23,6 +27,18 @@ export class CardDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentWidth = window.innerWidth;
+
+    //practice area
+    // const source = from([
+    //   { 'name': 'john', 'age': '27' },
+    //   { 'name': 'yanyie', 'age': '31' },
+    //   { 'name': 'yanlin', 'age': '23' }]);
+
+    // const mapValues = map(({ name, age }) => name + ' ' + age);
+    // const mapNumber = mapValues(source);
+    // mapNumber.subscribe(x => console.log(x))
+
+    // console.log();
   }
 
 
@@ -50,8 +66,6 @@ export class CardDetailComponent implements OnInit {
   }
 
   onSelect(className: string): void {
-    const iframe = this.hostElement.nativeElement.querySelector('iframe');
-
     switch (className) {
       case 'thumbBox':
         this.thumbClicked = true;

@@ -49,24 +49,29 @@ export class GridcardComponent implements OnInit {
     return this.cardArray;
   }
 
+  handleUndefined(item: any): any {
+    return item.attributes.posterImage !== null ? item.attributes.posterImage?.large : '';
+  }
+
+
   loadInitPost(): void {
-    const url = "https://kitsu.io/api/edge/anime?page[limit]=10&page[offset]=0";
+    const url = "https://kitsu.io/api/edge/anime?sort=-startDate&page[limit]=10&page[offset]=0";
     this.http.get(url).subscribe((data: any) => {
-      this.cardArray = data.data;
+      this.cardArray = data.data.reverse();
     });
   }
 
   //content part2
   loadNextPost() {
-    var i = 10;
+    let i = 11;
     return () => {
-      const url = `https://kitsu.io/api/edge/anime?page[limit]=2&page[offset]=${i}`;
+      const url = `https://kitsu.io/api/edge/anime?sort=-startDate&page[limit]=4&page[offset]=${i}`;
       this.http.get(url).subscribe((data: any) => {
-        for (let i = 0; i < data.data.length; i++) {
-          this.cardArray.push(data.data[i]);
+        for (let i = data.data.length; i > 0; i--) {
+          this.cardArray.push(data.data[i - 1]);
         }
       });
-      i += 2;
+      i += 4;
     }
   }
 

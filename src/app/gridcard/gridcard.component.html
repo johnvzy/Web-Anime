@@ -5,7 +5,7 @@
         <div class="card shadow text-center">
             <div class="card-body">
                 <div class="card-title">{{item.attributes.canonicalTitle}}</div>
-                <img [src]="item.attributes.posterImage.large">
+                <img [src]="handleUndefined(item)">
                 <p class="card-text"></p>
                 <button type="button" class="btn btn-outline-primary" (click)="enlargeContent(item.attributes)">Go
                     Details</button>
