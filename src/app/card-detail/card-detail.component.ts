@@ -3,8 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { functions } from 'firebase';
 import { of, Observable, interval, from, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { eventNames } from 'cluster';
-import { time } from 'console';
 
 @Component({
   selector: 'app-card-detail',
