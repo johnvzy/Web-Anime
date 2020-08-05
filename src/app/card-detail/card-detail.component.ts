@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRe
 import { DomSanitizer } from '@angular/platform-browser';
 import { functions } from 'firebase';
 import { of, Observable, interval, from, pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card-detail',
@@ -27,16 +27,22 @@ export class CardDetailComponent implements OnInit {
     this.currentWidth = window.innerWidth;
 
     //practice area
-    // const source = from([
-    //   { 'name': 'john', 'age': '27' },
-    //   { 'name': 'yanyie', 'age': '31' },
-    //   { 'name': 'yanlin', 'age': '23' }]);
+    const source = from([
+      { 'name': 'john', 'age': '27' },
+      { 'name': 'yanyie', 'age': '31' },
+      { 'name': 'yanlin', 'age': '23' }]);
 
-    // const mapValues = map(({ name, age }) => name + ' ' + age);
-    // const mapNumber = mapValues(source);
-    // mapNumber.subscribe(x => console.log(x))
+    const mapValues = pipe(
+      filter((value:any) => {
+        return value.age > 25
+      }),
+      map((name) => {
+        return name.name
+      }));
+    const mapNumber = mapValues(source);
+    mapNumber.subscribe(x => console.log(x))
 
-    // console.log();
+    console.log();
   }
 
 
